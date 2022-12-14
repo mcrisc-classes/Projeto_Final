@@ -1,7 +1,7 @@
 # Projeto_Final
 
-##MEMBROS: 
+## MEMBROS: 
 
-*Weslley (Dev)
-*Luan (Dev)
-*Larissa (tester)
+* Weslley (Dev)
+* Luan (Dev)
+* Larissa (tester)
