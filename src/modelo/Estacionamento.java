@@ -1,3 +1,4 @@
+package modelo;
 public class Estacionamento {
 
     private int id;
