@@ -1,10 +1,20 @@
 package modelo;
+
 public class Estacionamento {
 
     private int id;
     private int vagas_ocupadas;
     private int vagas_livres;
+    private int vagas_totais;
     private String tipo_bloco;
+
+    public void setVagas_totais(int vagas_totais) {
+        this.vagas_totais = vagas_totais;
+    }
+
+    public int getVagas_totais() {
+        return vagas_totais;
+    }
 
     public String getTipo_bloco() {
         return tipo_bloco;
