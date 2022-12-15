@@ -45,7 +45,7 @@ create table `vaga`(
 
 	`numero` int NOT NULL,
 	`id` int NOT NULL,
-	`placa` VARCHAR(20) NOT NULL,
+	`placa` VARCHAR(20),
 	primary key (`numero`),
 	key `id_Es` (`id`),
 	constraint `vaga_ibfk_1` foreign key (`id`) references `estacionamento`(`id`),

@@ -30,7 +30,10 @@ public class EstacionamenteController {
 
     public void alterarBloco(String bloco) throws PersistenceException {
 
-        estacionamento.alterarBloco(bloco);
+        if (bloco.equals("meia") || bloco.equals("inteira")) {
+            estacionamento.update(bloco);
+        }
+
     }
 
 }
