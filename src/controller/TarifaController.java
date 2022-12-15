@@ -1,13 +1,8 @@
 package controller;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-import javax.xml.crypto.Data;
-
-import com.mysql.cj.result.LocalDateTimeValueFactory;
-
+import modelo.Carros;
 import modelo.Tarifa;
 import persistence.PersistenceException;
 import persistence.TarifaDAO;
@@ -34,6 +29,12 @@ public class TarifaController {
         Tarifa tarifa = new Tarifa("ASD0000", 10, null, 100);
 
         t.update(tarifa);
+
+    }
+
+    public void insert(Carros carro) throws PersistenceException {
+
+        // Calculo sobre a tarifa de acordo com a duração
 
     }
 

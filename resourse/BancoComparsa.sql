@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS `carros`;
 CREATE TABLE `carros` (
   `placa` varchar(20) NOT NULL,
   `descricao` varchar(40) NOT NULL,
-  `duracao` int NOT NULL,
+  `duracao` int DEFAULT NULL,
   `quantidade_blocos` int DEFAULT NULL,
-  `hora_entrada` datetime NOT NULL,
+  `hora_entrada` datetime DEFAULT NULL,
   `hora_saida` datetime DEFAULT NULL,
   PRIMARY KEY (`placa`)
 );
@@ -22,6 +22,7 @@ CREATE TABLE `cliente` (
   `n_cliente` int DEFAULT NULL,
   `observacoes` varchar(20) DEFAULT NULL,
   `placa` varchar(20) NOT NULL,
+  'saldo' float DEFAULT NULL,
   PRIMARY KEY (`cpf`),
   KEY `n_placa` (`placa`),
   CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`placa`) REFERENCES `carros` (`placa`)

@@ -71,6 +71,10 @@ public class TarifaDAO {
 
     }
 
+    // -------------------------------------------------------------------------- //
+    // Atualiza dados de uma tarifa
+    // -------------------------------------------------------------------------- //
+
     public void update(Tarifa tarifa) throws PersistenceException {
 
         try (Connection conn = DataSource.getConnection()) {
@@ -92,6 +96,23 @@ public class TarifaDAO {
             throw new PersistenceException(e);
         }
 
+    }
+
+    // -------------------------------------------------------------------------- //
+    // Deleta tarifa
+    // -------------------------------------------------------------------------- //
+
+    public void delete(Tarifa tarifa) throws PersistenceException {
+
+        try (Connection conn = DataSource.getConnection()) {
+            String query = "DELETE FROM tarifa WHERE placa = ?;";
+            try (PreparedStatement ps = conn.prepareStatement(query)) {
+                ps.setString(1, tarifa.getPlaca());
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
 }

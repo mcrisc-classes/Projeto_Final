@@ -6,10 +6,13 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 public class DataSource {
-	private static Logger logger = Logger.getLogger("localhost");
-	private static final String DB_NAME = "comparsasbanco";
-	private static final String DB_USER = "root";
-	private static final String DB_PASSWORD = "root";
+	// -------------------------------------------------------------------------- //
+	// Informações sobre a conexão
+	// -------------------------------------------------------------------------- //
+	private static Logger logger = Logger.getLogger("localhost"); // Nome do host
+	private static final String DB_NAME = "comparsasbanco"; // Nome do banco
+	private static final String DB_USER = "root"; // User do banco
+	private static final String DB_PASSWORD = "root"; // Senha do banco
 
 	static {
 		try {
@@ -19,6 +22,10 @@ public class DataSource {
 			throw new RuntimeException(e);
 		}
 	}
+
+	// -------------------------------------------------------------------------- //
+	// Conexão
+	// -------------------------------------------------------------------------- //
 
 	public static Connection getConnection() throws SQLException {
 		Connection conn = DriverManager.getConnection(
