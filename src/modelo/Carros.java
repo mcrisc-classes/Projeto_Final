@@ -1,6 +1,6 @@
 package modelo;
 
-import javax.xml.crypto.Data;
+import java.sql.Date;
 
 public class Carros {
     private String placa;
@@ -8,26 +8,26 @@ public class Carros {
     private String tipo_cliente;
     private int duracao;
     private int quantidade_blocos;
-    private Data hora_entrada;
-    private Data hora_sainda;
+    private Date hora_entrada;
+    private Date hora_sainda;
 
     public String getPlaca() {
         return placa;
     }
 
-    public Data getHora_sainda() {
+    public Date getHora_sainda() {
         return hora_sainda;
     }
 
-    public void setHora_sainda(Data hora_sainda) {
+    public void setHora_sainda(Date hora_sainda) {
         this.hora_sainda = hora_sainda;
     }
 
-    public Data getHora_entrada() {
+    public Date getHora_entrada() {
         return hora_entrada;
     }
 
-    public void setHora_entrada(Data hora_entrada) {
+    public void setHora_entrada(Date hora_entrada) {
         this.hora_entrada = hora_entrada;
     }
 

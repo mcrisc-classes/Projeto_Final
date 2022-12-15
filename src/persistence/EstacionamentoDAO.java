@@ -41,7 +41,7 @@ public class EstacionamentoDAO {
     }
 
     // -------------------------------------------------------------------------- //
-    // Ocupar vaga : Subtrai 1 no vagas ocupadas e soma 1 no vagas livres
+    // Liberar vaga : Subtrai 1 no vagas ocupadas e soma 1 no vagas livres
     // -------------------------------------------------------------------------- //
 
     public void liberarVaga() throws PersistenceException {
@@ -50,7 +50,7 @@ public class EstacionamentoDAO {
             String query = "SELECT   id, vagas_totais, vagas_livre, vagas_ocupadas FROM estacionamento";
 
             try (PreparedStatement ps = conn.prepareStatement(query)) {
-                ResultSet rs = ps.executeQuery();
+                ResultSet rs = ps.executeQuery(); // aaaaa
 
                 if (rs.next()) {
                     int vagas_livre, vagas_ocupadas, vagas_totais, id;
@@ -60,7 +60,7 @@ public class EstacionamentoDAO {
                     vagas_ocupadas = rs.getInt("vagas_ocupadas") - 1;
                     vagas_totais = rs.getInt("vagas_totais");
 
-                    if (vagas_livre > 30 || vagas_ocupadas < 0) {
+                    if (vagas_livre > vagas_totais || vagas_ocupadas < 0) {
                         throw new PersistenceException("O ilimite de vagas foi excedido! ");
                     }
 
@@ -103,7 +103,7 @@ public class EstacionamentoDAO {
                     vagas_ocupadas = rs.getInt("vagas_ocupadas") + 1;
                     vagas_totais = rs.getInt("vagas_totais");
 
-                    if (vagas_ocupadas > 30 || vagas_livre < 0) {
+                    if (vagas_ocupadas > vagas_totais || vagas_livre < 0) {
                         throw new PersistenceException("O ilimite de vagas foi excedido! ");
                     }
 
@@ -129,7 +129,7 @@ public class EstacionamentoDAO {
     // Alterar valor do bloco entre inteiro e meio.
     // -------------------------------------------------------------------------- //
 
-    public void alterarBloco(String bloco) throws PersistenceException {
+    public void update(String bloco) throws PersistenceException {
 
         try (Connection conn = DataSource.getConnection()) {
             String query = "SELECT   id FROM estacionamento";

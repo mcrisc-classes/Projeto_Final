@@ -7,9 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Cliente;;
+import modelo.Cliente;
 
 public class ClienteDAO {
+
+    // -------------------------------------------------------------------------- //
+    // Encontra cliente com base no cpf
+    // -------------------------------------------------------------------------- //
 
     public Cliente findByCpf(String cpf) throws PersistenceException {
         Cliente cliente = null;
@@ -39,17 +43,21 @@ public class ClienteDAO {
         return cliente;
     }
 
+    // -------------------------------------------------------------------------- //
+    // lista clientes
+    // -------------------------------------------------------------------------- //
+
     public List<Cliente> listAll() throws PersistenceException {
         List<Cliente> clientes = new ArrayList<>();
 
         try (Connection conn = DataSource.getConnection()) {
-            final String query = "SELECT cpf, n_cliente, telefone,observacoes,placa FROM cliente;";
+            final String query = "SELECT cpf, n_cliente, telefone,observacoes,placa FROM cliente WHERE cpf = ?;";
 
             try (Statement ps = conn.createStatement()) {
                 ResultSet rs = ps.executeQuery(query);
-                Cliente cliente = new Cliente();
-                while (rs.next()) {
 
+                while (rs.next()) {
+                    Cliente cliente = new Cliente();
                     cliente.setCpf(rs.getString("cpf"));
                     cliente.setN_cliente(rs.getInt("n_cliente"));
                     cliente.setTelefone(rs.getString("telefone"));
@@ -67,6 +75,10 @@ public class ClienteDAO {
         return clientes;
     }
 
+    // -------------------------------------------------------------------------- //
+    // deleta clientes
+    // -------------------------------------------------------------------------- //
+
     public void delete(Cliente cliente) throws PersistenceException {
         try (Connection conn = DataSource.getConnection()) {
             String query = "DELETE FROM cliente WHERE cpf = ?;";
@@ -78,6 +90,27 @@ public class ClienteDAO {
             throw new PersistenceException(e);
         }
     }
+
+    // -------------------------------------------------------------------------- //
+    // Salva clientes no banco de dados diferenciando novos de velhos
+    // -------------------------------------------------------------------------- //
+    public Cliente save(Cliente cliente) throws PersistenceException {
+        try (Connection conn = DataSource.getConnection()) {
+            if (cliente.isNew()) {
+                insert(conn, cliente);
+            } else {
+                update(conn, cliente);
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
+
+        return cliente;
+    }
+
+    // -------------------------------------------------------------------------- //
+    // Insere novos clientes
+    // -------------------------------------------------------------------------- //
 
     private void insert(Connection conn, Cliente cliente) throws SQLException {
         String query = "INSERT INTO cliente (cpf, n_cliente, telefone,observacoes,placa) VALUES (?, ?, ?, ?, ?);";
@@ -96,6 +129,10 @@ public class ClienteDAO {
         }
     }
 
+    // -------------------------------------------------------------------------- //
+    // Atualiza Clientes antigos
+    // -------------------------------------------------------------------------- //
+
     private void update(Connection conn, Cliente cliente) throws SQLException {
 
         String query = "UPDATE cliente SET n_cliente = ?, telefone = ?,observacoes = ?,placa = ? WHERE cpf = ?;";
@@ -109,10 +146,4 @@ public class ClienteDAO {
         }
     }
 
-    public static void main(String[] args) throws PersistenceException {
-        ClienteDAO c = new ClienteDAO();
-        Cliente cliente = c.findByCpf("450454234-02");
-        System.out.println(cliente.getTelefone());
-
-    }
 }

@@ -1,6 +1,6 @@
 package modelo;
 
-public class Cliente {
+public class Cliente extends Enity {
     private String cpf;
     private String telefone;
     private int n_cliente;
