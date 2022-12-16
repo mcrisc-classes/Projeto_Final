@@ -18,6 +18,14 @@ public class EstacionamenteController {
 
     }
 
+    public String tipoBloco() throws PersistenceException {
+
+        Estacionamento e = estacionamento.consultarEstacionamento();
+
+        return e.getTipo_bloco();
+
+    }
+
     public void LiberarVaga() throws PersistenceException {
 
         estacionamento.liberarVaga();

@@ -79,32 +79,13 @@ public class CarroDAO {
     // -------------------------------------------------------------------------- //
     // Insere valores novos na tabela, diferenciando updats de inserts
     // -------------------------------------------------------------------------- //
-    public Carros save(Carros carros) throws PersistenceException {
-        try (Connection conn = DataSource.getConnection()) {
-            if (carros.isNew()) {
-                insert(conn, carros);
-            } else {
-                update(conn, carros);
-            }
+    public Carros save(Carros carros) throws PersistenceException, SQLException {
 
-        } catch (SQLException e) {
-            throw new PersistenceException(e);
-        }
-
-        return carros;
-    }
-
-    // -------------------------------------------------------------------------- //
-    // Salva a data e hora que o carro deixa o estacionamento
-    // -------------------------------------------------------------------------- //
-
-    public Carros saveSaida(Carros carros) throws PersistenceException {
-        try (Connection conn = DataSource.getConnection()) {
-
-            updateSaida(conn, carros);
-
-        } catch (SQLException e) {
-            throw new PersistenceException(e);
+        if (!carros.isNew()) {
+            insert(carros);
+            System.out.println("TESTE2");
+        } else {
+            update(carros);
         }
 
         return carros;
@@ -114,32 +95,43 @@ public class CarroDAO {
     // Insere um novo carro
     // -------------------------------------------------------------------------- //
 
-    private void insert(Connection conn, Carros carros) throws SQLException {
+    public void insert(Carros carros) throws SQLException, PersistenceException {
 
-        String query = "INSERT INTO carros (placa, descricao, hora_entrada, hora_saida) VALUES (?, ?, now(), null);";
-        try (PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, carros.getPlaca());
-            ps.setString(2, carros.getDescricao());
-            ps.executeUpdate();
+        try (Connection conn = DataSource.getConnection()) {
+            String query = "INSERT INTO carros (placa, descricao, duracao, quantidade_blocos, hora_entrada, hora_saida) VALUES (?, ?, 0, 0, now(), null);";
+            try (PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, carros.getPlaca());
+                ps.setString(2, carros.getDescricao());
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
 
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                carros.setPlaca(rs.getString(1));
+                if (rs.next()) {
+                    carros.setPlaca(rs.getString(1));
+                }
             }
+
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
         }
+
     }
 
     // -------------------------------------------------------------------------- //
     // Guarda data e hora da saida de um carro
     // -------------------------------------------------------------------------- //
 
-    private void updateSaida(Connection conn, Carros carros) throws SQLException {
+    public void updateSaida(Carros carros) throws SQLException, PersistenceException {
 
-        String query = "UPDATE carro SET hora_saida = now() WHEEW placa =?;";
-        try (PreparedStatement ps = conn.prepareStatement(query)) {
+        try (Connection conn = DataSource.getConnection()) {
+            String query = "UPDATE carros SET hora_saida = now() WHERE placa = ?;";
 
-            ps.setString(1, carros.getPlaca());
-            ps.executeUpdate();
+            try (PreparedStatement ps = conn.prepareStatement(query)) {
+                ps.setString(1, carros.getPlaca());
+                ps.executeUpdate();
+
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
         }
     }
 
@@ -147,25 +139,36 @@ public class CarroDAO {
     // Muda dados caso necessário
     // -------------------------------------------------------------------------- //
 
-    private void update(Connection conn, Carros carros) throws SQLException {
-
-        String query = "UPDATE carros SET placa = ?, descricao = ?,duracao = ?,quantidade_blocos = ?,hora_entrada = ?, hora_saida = ? WHERE placa = ?;";
-        try (PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setString(1, carros.getPlaca());
-            ps.setString(2, carros.getDescricao());
-            ps.setInt(3, carros.getDuracao());
-            ps.setInt(4, carros.getQuantidade_blocos());
-            ps.setString(5, carros.getHora_entrada());
-            ps.setString(6, carros.getHora_saida());
-            ps.executeUpdate();
-        }
-    }
-
-    private void limparDate(Carros carros) throws PersistenceException {
+    public void update(Carros carros) throws SQLException, PersistenceException {
 
         try (Connection conn = DataSource.getConnection()) {
 
-            String query = "UPDATE carro SET hora_saida = null, hora_entrada = null WHEEW placa =?;";
+            String query = "UPDATE carros SET placa = ?, descricao = ?,duracao = ?,quantidade_blocos = ?,hora_entrada = ?, hora_saida = ? WHERE placa = ?;";
+            try (PreparedStatement ps = conn.prepareStatement(query)) {
+                ps.setString(1, carros.getPlaca());
+                ps.setString(2, carros.getDescricao());
+                ps.setInt(3, carros.getDuracao());
+                ps.setInt(4, carros.getQuantidade_blocos());
+                ps.setString(5, carros.getHora_entrada());
+                ps.setString(6, carros.getHora_saida());
+                ps.setString(7, carros.getPlaca());
+                ps.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
+    }
+
+    // -------------------------------------------------------------------------- //
+    // Limpar data de horário e saida quando o carro for embora
+    // -------------------------------------------------------------------------- //
+
+    public void limparDate(Carros carros) throws PersistenceException {
+
+        try (Connection conn = DataSource.getConnection()) {
+
+            String query = "UPDATE carros SET hora_saida = null, hora_entrada = null WHERE placa =?;";
 
             try (PreparedStatement ps = conn.prepareStatement(query)) {
 

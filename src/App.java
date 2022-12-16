@@ -1,4 +1,3 @@
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
@@ -6,6 +5,10 @@ import java.util.concurrent.TimeUnit;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import controller.CarroController;
+import controller.EstacionamenteController;
+import modelo.Carros;
+import modelo.Estacionamento;
+import persistence.CarroDAO;
 
 public class App {
 
@@ -14,7 +17,14 @@ public class App {
 
         CarroController c = new CarroController();
 
-        c.calcularBloco(null);
+        Carros car = new Carros();
+
+        car.setDescricao("FUSCAO PRETO UIUIUI");
+        car.setPlaca("C4V4L0");
+
+        c.registrarEntradaOuSaida(car);
+
+        c.listarCarros();
 
     }
 
