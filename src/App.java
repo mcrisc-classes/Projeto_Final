@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import controller.CarroController;
+import controller.TarifaController;
 import modelo.Carros;
 
 public class App {
@@ -17,10 +18,12 @@ public class App {
 
         Carros cari = new Carros();
 
-        cari.setPlaca("APXKM");
-        cari.setDescricao("Mustang");
+        System.out.println("TARIFA : " + c.precoTarifa("APXKM"));
+        System.out.println("TARIFA : " + c.precoTarifa("R0N41D0"));
 
-        c.registrarEntradaOuSaida("APXKM");
+        TarifaController t = new TarifaController();
+
+        t.insert("W3D1-000");
 
     }
 

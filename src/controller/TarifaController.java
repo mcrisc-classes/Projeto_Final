@@ -4,11 +4,13 @@ import java.util.List;
 
 import modelo.Carros;
 import modelo.Tarifa;
+import persistence.CarroDAO;
 import persistence.PersistenceException;
 import persistence.TarifaDAO;
 
 public class TarifaController {
     private TarifaDAO t = new TarifaDAO();
+    final double preco = 3.5; // PREÇO BLOCO
 
     public void listarTarifas() throws PersistenceException {
 
@@ -24,18 +26,26 @@ public class TarifaController {
         }
     }
 
-    public void update() throws PersistenceException {
-
-        Tarifa tarifa = new Tarifa("ASD0000", 10, null, 100);
+    public void update(Tarifa tarifa) throws PersistenceException {
 
         t.update(tarifa);
 
     }
 
-    public void insert(Carros carro) throws PersistenceException {
+    public void insert(String placa) throws PersistenceException {
+        CarroDAO carro = new CarroDAO();
+        Carros car = carro.findByPlaca(placa);
+        Tarifa tarifa = new Tarifa(car.getPlaca(), (float) preco, car.getHora_saida(), precoTarifa(car));
 
-        // Calculo sobre a tarifa de acordo com a duração
+        t.insert(tarifa);
 
+    }
+
+    public float precoTarifa(Carros carro) {
+
+        float total = (float) (carro.getQuantidade_blocos() * preco);
+
+        return total;
     }
 
 }

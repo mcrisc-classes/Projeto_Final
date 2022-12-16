@@ -30,7 +30,7 @@ public class TarifaDAO {
                     Tarifa tarifa = new Tarifa();
                     tarifa.setPlaca(rs.getString("placa"));
                     tarifa.setPreco_bloco(rs.getFloat("preco_bloco"));
-                    tarifa.setDt_pagamento(rs.getDate("dt_pagamento"));
+                    tarifa.setDt_pagamento(rs.getString("dt_pagamento"));
                     tarifa.setValor_pago(rs.getFloat("valor_pago"));
 
                     tarifas.add(tarifa);
@@ -57,7 +57,7 @@ public class TarifaDAO {
             try (PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, tarifa.getPlaca());
                 ps.setFloat(2, tarifa.getPreco_bloco());
-                ps.setDate(3, tarifa.getDt_pagamento());
+                ps.setString(3, tarifa.getDt_pagamento());
                 ps.setFloat(4, tarifa.getValor_pago());
                 ps.executeUpdate();
 
@@ -85,7 +85,7 @@ public class TarifaDAO {
 
                 ps.setString(1, tarifa.getPlaca());
                 ps.setFloat(2, tarifa.getPreco_bloco());
-                ps.setDate(3, tarifa.getDt_pagamento());
+                ps.setString(3, tarifa.getDt_pagamento());
                 ps.setFloat(4, tarifa.getValor_pago());
                 ps.setString(5, tarifa.getPlaca());
                 ps.executeUpdate();
