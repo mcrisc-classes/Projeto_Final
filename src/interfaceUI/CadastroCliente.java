@@ -1,4 +1,4 @@
-package controller;
+package interfaceUI;
 
 import java.sql.Connection;
 
@@ -6,10 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controller.UseCaseController;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;;
 
-public class CadastroCliente extends JPanel {
+public class CadastroCliente extends UseCaseController {
 
     private JLabel telefone;
     private JLabel nome;
@@ -136,6 +139,12 @@ public class CadastroCliente extends JPanel {
 
     public void setTxtSaldo(JTextField txtSaldo) {
         this.txtSaldo = txtSaldo;
+    }
+
+    @Override
+    public JPanel buildUI() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

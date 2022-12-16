@@ -5,6 +5,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import interfaceUI.*;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
@@ -13,6 +15,7 @@ public class MainController extends JFrame {
     private AreaInicial ai;
     private CadastroCliente CadastroCliente;
     private CadastroCarro CadastroCarro;
+    private GerenciamentoVeiculos gv;
 
     public MainController() {
 
@@ -23,6 +26,7 @@ public class MainController extends JFrame {
         ai = new AreaInicial();
         CadastroCliente = new CadastroCliente();
         CadastroCarro = new CadastroCarro();
+        gv = new GerenciamentoVeiculos();
 
         setLayout(new GridBagLayout());
 
@@ -35,13 +39,25 @@ public class MainController extends JFrame {
 
         add(ai, gc);
 
-        gc.gridy++;
+        gc.gridy--;
 
         add(CadastroCliente, gc);
 
-        ai.setVisible(true);
+        gc.gridy--;
+
+        add(CadastroCarro,gc);
+
+        gc.gridy--;
+
+        add(gv,gc);
+
+        ai.setVisible(false);
 
         CadastroCliente.setVisible(false);
+
+        CadastroCarro.setVisible(false);
+
+        gv.setVisible(true);
 
         super.setJMenuBar(criaMenu());
 

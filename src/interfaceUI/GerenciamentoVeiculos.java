@@ -1,4 +1,4 @@
-package controller;
+package interfaceUI;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +14,7 @@ import javax.swing.SwingWorker;
 
 import com.mysql.cj.xdevapi.Client;
 
+import controller.UseCaseController;
 import modelo.Carros;
 import modelo.Cliente;
 import persistence.CarroDAO;
@@ -22,8 +23,9 @@ import persistence.PersistenceException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-public class GerenciamentoVeiculos extends JPanel {
+public class GerenciamentoVeiculos extends UseCaseController {
 
+    private JPanel panel;
     private JLabel placa;
     private JLabel descrição;
     private JTextField txtplaca;
@@ -43,6 +45,7 @@ public class GerenciamentoVeiculos extends JPanel {
     // Função responsavel por procurar clientes cadastrados por meio do cpf
 
     public void procurar() throws PersistenceException {
+
 
         SwingWorker<String, Void> worker = new SwingWorker<>() {
             @Override
@@ -127,6 +130,8 @@ public class GerenciamentoVeiculos extends JPanel {
 
     public void PanelGerenciaVeiculos() throws PersistenceException {
 
+        panel = new JPanel();
+
         JLabel placa = new JLabel("Placa: ");
         JLabel descricao = new JLabel("Descrição: ");
         JTextField txtplaca = new JTextField(15);
@@ -138,7 +143,7 @@ public class GerenciamentoVeiculos extends JPanel {
         // JTextField txtSaldo = new JTextField(15);
         // JTextField txtBlocos = new JTextField(15);
 
-        setLayout(new GridBagLayout());
+        panel.setLayout(new GridBagLayout());
 
         GridBagConstraints gc = new GridBagConstraints();
         gc.gridx = 0;
@@ -177,6 +182,12 @@ public class GerenciamentoVeiculos extends JPanel {
 
         cadastrarVeiculo();
 
+    }
+
+    @Override
+    public JPanel buildUI() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

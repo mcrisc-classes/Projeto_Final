@@ -1,21 +1,23 @@
-package controller;
+package interfaceUI;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controller.UseCaseController;
 
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-public class AreaInicial extends JPanel {
+public class AreaInicial extends UseCaseController {
 
     private JLabel estacionamento;
     private JButton EntradaSaida;
     private JButton Mensalista;
 
-    public AreaInicial() {
+    public void AreaInicial() {
 
         setLayout(new GridBagLayout());
 
@@ -51,6 +53,13 @@ public class AreaInicial extends JPanel {
         Mensalista.setSize(d);
 
         add(Mensalista, gc);
+        
 
+    }
+
+    @Override
+    public JPanel buildUI() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

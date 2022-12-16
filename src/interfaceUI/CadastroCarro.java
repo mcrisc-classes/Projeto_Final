@@ -1,17 +1,21 @@
-package controller;
+package interfaceUI;
 
 import javax.management.loading.PrivateClassLoader;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controller.UseCaseController;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.sql.Connection;
 import javax.swing.JButton;
 
-public class CadastroCarro extends JPanel {
-
+public class CadastroCarro extends UseCaseController {
+    
+    private JPanel penel;
     private JLabel placa;
     private JTextField txtplaca;
     private JButton pesquisar;
@@ -61,9 +65,15 @@ public class CadastroCarro extends JPanel {
 
     }
 
+    @Override
+    public JPanel buildUI() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     /* Criação da tabela responsavel pela entrade de veiculos cadastrado */
 
-    public void EntradaVeiculo(ActionEvent e) {
+    /*public void EntradaVeiculo(ActionEvent e) {
 
         pesquisar.setEnabled(false);
         pesquisar.setVisible(false);
@@ -145,11 +155,11 @@ public class CadastroCarro extends JPanel {
 
         add(cancelar, gc);
 
-    }
+    }*/
 
     /* Criação da Janela responsavel pela saida de veiculos */
 
-    public void SaidaVeiculo(ActionEvent e) {
+   /* public void SaidaVeiculo(ActionEvent e) {
 
         pesquisar.setEnabled(false);
         pesquisar.setVisible(false);
@@ -182,11 +192,11 @@ public class CadastroCarro extends JPanel {
 
         add(cancelar, gc);
 
-    }
+    }*/
 
     /* Crianção de janelas que cadastra veiculos não inclusos no banco */
 
-    public void CadastrarCarro(ActionEvent e) {
+    /*public void CadastrarCarro(ActionEvent e) {
 
         pesquisar.setEnabled(false);
         pesquisar.setVisible(false);
@@ -271,6 +281,6 @@ public class CadastroCarro extends JPanel {
         gc.gridx++;
 
         add(cancelar, gc);
-    }
+    }*/
 
 }
