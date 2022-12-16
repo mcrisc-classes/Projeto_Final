@@ -53,9 +53,9 @@ public class CarroController {
         } else if (car != null && car.getHora_saida() == null) { // Se tiver registro de carro e ele tiver registro de
 
             car = carro.saveSaida(car);
+            car = carro.findByPlaca(placa);
             car.setDuracao(duracao(car.getPlaca()));
             car.setQuantidade_blocos(calcularBloco(car.getPlaca()));
-            car = carro.findByPlaca(placa);
             carro.update(car);
 
             return 1;
@@ -80,7 +80,7 @@ public class CarroController {
     // Duração que o carro ficou na vaga
     // -------------------------------------------------------------------------- //
 
-    public int duracao(String placa) throws PersistenceException, ParseException {
+    public int duracao(String placa) throws PersistenceException, ParseException, SQLException {
 
         Carros car = carro.findByPlaca(placa);
 

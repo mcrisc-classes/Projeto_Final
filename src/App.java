@@ -18,10 +18,9 @@ public class App {
         Carros cari = new Carros();
 
         cari.setPlaca("BBB");
-        cari.setDescricao("Penis murcho");
+        cari.setDescricao("Dinossauro");
 
-        // c.registrarEntradaOuSaida("BBB");
-        c.delete("F4ust0");
+        c.registrarEntradaOuSaida("BBB");
 
     }
 
