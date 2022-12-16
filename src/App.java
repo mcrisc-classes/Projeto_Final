@@ -17,10 +17,10 @@ public class App {
 
         Carros cari = new Carros();
 
-        cari.setPlaca("BBB");
-        cari.setDescricao("Dinossauro");
+        cari.setPlaca("APXKM");
+        cari.setDescricao("Mustang");
 
-        c.registrarEntradaOuSaida("BBB");
+        c.registrarEntradaOuSaida("APXKM");
 
     }
 
