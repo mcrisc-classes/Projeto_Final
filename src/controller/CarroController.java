@@ -1,13 +1,10 @@
 package controller;
 
-import java.rmi.server.SocketSecurityException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import javax.sound.midi.Soundbank;
 
 import modelo.Carros;
 import persistence.CarroDAO;
@@ -136,6 +133,17 @@ public class CarroController {
 
         carro.delete(car);
 
+    }
+
+    // -------------------------------------------------------------------------- //
+    // Registra entrada e saida de carros não registrados
+    // -------------------------------------------------------------------------- //
+
+    public float precoTarifa(String placa) throws PersistenceException {
+        Carros car = carro.findByPlaca(placa);
+        TarifaController tarifa = new TarifaController();
+
+        return tarifa.precoTarifa(car);
     }
 
 }

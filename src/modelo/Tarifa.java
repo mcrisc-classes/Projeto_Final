@@ -6,14 +6,14 @@ public class Tarifa {
 
     private String placa;
     private float preco_bloco;
-    private Date dt_pagamento;
+    private String dt_pagamento;
     private float valor_pago;
 
     // -------------------------------------------------------------------------- //
     // Construtores
     // -------------------------------------------------------------------------- //
 
-    public Tarifa(String placa, float preco_bloco, Date dt_pagamento, float valor_pago) {
+    public Tarifa(String placa, float preco_bloco, String dt_pagamento, float valor_pago) {
         this.placa = placa;
         this.preco_bloco = preco_bloco;
         this.dt_pagamento = dt_pagamento;
@@ -31,11 +31,11 @@ public class Tarifa {
         return placa;
     }
 
-    public Date getDt_pagamento() {
+    public String getDt_pagamento() {
         return dt_pagamento;
     }
 
-    public void setDt_pagamento(Date dt_pagamento) {
+    public void setDt_pagamento(String dt_pagamento) {
         this.dt_pagamento = dt_pagamento;
     }
 
