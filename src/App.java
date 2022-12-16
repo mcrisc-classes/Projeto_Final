@@ -17,11 +17,10 @@ public class App {
 
         Carros cari = new Carros();
 
-        cari.setPlaca("BBB");
-        cari.setDescricao("Penis murcho");
+        cari.setPlaca("APXKM");
+        cari.setDescricao("Mustang");
 
-        // c.registrarEntradaOuSaida("BBB");
-        c.delete("F4ust0");
+        c.registrarEntradaOuSaida("APXKM");
 
     }
 
