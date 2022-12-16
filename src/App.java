@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import controller.CarroController;
+import modelo.Carros;
 
 public class App {
 
@@ -14,7 +15,13 @@ public class App {
 
         CarroController c = new CarroController();
 
-        c.calcularBloco(null);
+        Carros cari = new Carros();
+
+        cari.setPlaca("BBB");
+        cari.setDescricao("Penis murcho");
+
+        // c.registrarEntradaOuSaida("BBB");
+        c.delete("F4ust0");
 
     }
 
