@@ -9,6 +9,10 @@ public class Tarifa {
     private Date dt_pagamento;
     private float valor_pago;
 
+    // -------------------------------------------------------------------------- //
+    // Construtores
+    // -------------------------------------------------------------------------- //
+
     public Tarifa(String placa, float preco_bloco, Date dt_pagamento, float valor_pago) {
         this.placa = placa;
         this.preco_bloco = preco_bloco;
@@ -18,6 +22,10 @@ public class Tarifa {
 
     public Tarifa() {
     }
+
+    // -------------------------------------------------------------------------- //
+    // Getters e setters
+    // -------------------------------------------------------------------------- //
 
     public String getPlaca() {
         return placa;

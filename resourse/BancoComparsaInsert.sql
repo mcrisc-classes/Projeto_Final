@@ -9,6 +9,8 @@ values ('EEE0000', 'reabaixado', 5, 2, '2022-03-21 12:30:00', '2022-03-21 12:35:
 insert into `carros`(`placa`,  `descricao`, `duracao`,`quantidade_blocos`,`hora_entrada`,`hora_saida`)
 values ('CCC0000', 'branco', 25, 3, '2022-03-30 12:25:00', '2022-03-21 12:50:00');
 
+
+
 select * from `carros`;
 
 insert into `cliente`(`cpf`,  `telefone`,`n_cliente`, `observacoes`,`placa`)
@@ -18,7 +20,7 @@ values ('450454234-03', '9988888',  1, 'caloteiro', 'ASD0000');
 insert into `cliente`(`cpf`,  `telefone`,`n_cliente`, `observacoes`,`placa`)
 values ('450454234-04', '9998888', 2, 'vascaino', 'CCC0000');
 insert into `cliente`(`cpf`,  `telefone`,`n_cliente`, `observacoes`,`placa`)
-values ('450454234-05', '9999888',  3, 'tem amante','EEE0000');
+values ('450454234-05', '9999888',  3, 'tem amante','CCC0000');
 
 select * from `cliente`;
 
@@ -27,14 +29,25 @@ values (1,30, 13, 17 , 'Blocos_meia_hora');
 
 select * from `estacionamento`;
 
-insert into `vaga`(`id`,`placa`)
-values (1, 'FFF0230');
-insert into `vaga`(`id`,`placa`)
-values (2, 'ASD0000');
-insert into `vaga`(`id`,`placa`)
-values (3, 'CCC0000');
-insert into `vaga`(`id`,`placa`)
-values (4, 'EEE0000');
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, 'FFF0230', 1);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, 'ASD0000', 2);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, 'CCC0000', 3);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, 'EEE0000', 4);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, null, 5);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, null, 6);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, null, 7);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, Null, 8);
+insert into `vaga`(`id`,`placa`, 'numero')
+values (1, Null, 9);
+
 
 
 select * from `vaga`;

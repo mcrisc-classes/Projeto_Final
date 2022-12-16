@@ -1,23 +1,20 @@
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeUnit;
 
-import controller.EstacionamenteController;
-import controller.TarifaController;
-import modelo.Cliente;
-import persistence.ClienteDAO;
-import persistence.EstacionamentoDAO;
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
+import controller.CarroController;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
 
-        TarifaController t = new TarifaController();
+        CarroController c = new CarroController();
 
-        t.listarTarifas();
-        t.update();
-        t.listarTarifas();
+        c.calcularBloco(null);
 
     }
 

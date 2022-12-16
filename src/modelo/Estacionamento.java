@@ -8,6 +8,10 @@ public class Estacionamento {
     private int vagas_totais;
     private String tipo_bloco;
 
+    // -------------------------------------------------------------------------- //
+    // Getters e setters
+    // -------------------------------------------------------------------------- //
+
     public void setVagas_totais(int vagas_totais) {
         this.vagas_totais = vagas_totais;
     }
